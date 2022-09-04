@@ -22,20 +22,23 @@ function FileTreeItem(props: Props) {
   return (
     <div>
       <div className='File-tree-item'>
-        <span className={fileNameSegments.length > 1 ? 'File-tree-item__arrow_transparent' : ''}>
-          {isExpanded ? '−' : '+'}
+        <span className={props.paths.length === 1 ? 'File-tree-item__arrow_transparent' : ''}>
+          {isExpanded ? '-' : '+'}
         </span>
         <img
           src={`https://dderevjanik.github.io/vscode-icons-js-example/icons/${icon}`}
-          alt='file'
+          alt=''
           width='24'
         />
-        {fileNameSegments.length > 1 ? (
-          <span className='File-tree-item__filename'>{firstSegment}</span>
+        {props.paths.length === 1 ? (
+          <span className='File-tree-item__filename' title={firstSegment}>
+            {firstSegment}
+          </span>
         ) : (
           <button
             type='button'
             className='File-tree-item__filename File-tree-item__foldername'
+            title={firstSegment}
             onClick={toggleExpanded}
           >
             {firstSegment}
