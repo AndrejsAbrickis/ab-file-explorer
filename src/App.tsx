@@ -17,10 +17,14 @@ function App() {
       return
     }
 
-    getRepository(LocalStorageService.get(LocalStorageKeys.repository))
+    getRepository(LocalStorageService.get(LocalStorageKeys.repository), false)
   })
 
-  const getRepository = (type: RepositoryType) => {
+  const getRepository = (type: RepositoryType, clearExpandedPaths = true) => {
+    if (clearExpandedPaths) {
+      LocalStorageService.clear(LocalStorageKeys.expandedPaths)
+    }
+
     setIsLoading(true)
     LocalStorageService.set(LocalStorageKeys.repository, type)
 

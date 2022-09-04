@@ -24,8 +24,12 @@
   text-decoration: underline;
 }
 
-.File-tree-item__arrow_transparent {
+.File-tree-item__arrow--transparent {
   color: transparent;
+}
+
+.File-tree-item__arrow--rotate {
+  transform: rotate(90deg);
 }
 
 .File-tree-item__child-tree {

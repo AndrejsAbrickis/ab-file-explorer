@@ -4,16 +4,29 @@ export class LocalStorageService {
   }
 
   static get(key: string) {
-    return JSON.parse(localStorage.getItem(key) || '')
+    const value = localStorage.getItem(key)
+    return value ? JSON.parse(value) : value
   }
 
   static append(key: string, value: string) {
-    const state = LocalStorageService.get(key)
+    const state = LocalStorageService.get(key) || []
     LocalStorageService.set(key, [...state, value])
   }
 
   static remove(key: string, value: string) {
     const state = LocalStorageService.get(key)
-    LocalStorageService.set(key, state.filter((item:string) => item !== value))
+
+    if (!state) {
+      return
+    }
+
+    LocalStorageService.set(
+      key,
+      state.filter((item: string) => item !== value),
+    )
+  }
+
+  static clear(key: string) {
+    localStorage.removeItem(key)
   }
 }
