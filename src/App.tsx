@@ -1,17 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import FileTree from './Components/FileTree'
 import RepositorySelect from './Components/RepositorySelect'
+import { LocalStorageKeys } from './Constants/LocalStorageConstants'
 import { RepositoryType } from './Constants/RepositoryType'
 import { IRepository } from './Models/IRepository'
 import { FilesHttpService } from './Services/FilesHttpService'
+import { LocalStorageService } from './Services/LocalStorageService'
 
 function App() {
   const [repository, setRepository] = useState<IRepository | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  useEffect(() => {
+    if (repository) {
+      return
+    }
+
+    getRepository(LocalStorageService.get(LocalStorageKeys.repository))
+  })
+
   const getRepository = (type: RepositoryType) => {
     setIsLoading(true)
+    LocalStorageService.set(LocalStorageKeys.repository, type)
 
     FilesHttpService.get(type).then((repository) => {
       setRepository(repository)
@@ -22,7 +33,7 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>AB File Explorer</header>
-      <RepositorySelect onSelectRepository={getRepository} />
+      <RepositorySelect onSelectRepository={getRepository} selected={repository?.name} />
       {repository && (
         <div>
           {isLoading ? (

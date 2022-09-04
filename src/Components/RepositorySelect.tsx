@@ -1,6 +1,7 @@
 import { RepositoryType } from '../Constants/RepositoryType'
 
 interface Props {
+  selected: string | undefined
   onSelectRepository: (type: RepositoryType) => void
 }
 
@@ -15,7 +16,7 @@ function RepositorySelect(props: Props) {
     <select title='Repository type' onChange={onRepositorySelect}>
       <option value=''>Select repository</option>
       {repositoryTypes.map((type) => (
-        <option key={type} value={type}>
+        <option key={type} value={type} selected={type.toLowerCase() === props.selected?.toLowerCase()}>
           {type}
         </option>
       ))}

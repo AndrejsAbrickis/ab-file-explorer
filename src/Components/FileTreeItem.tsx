@@ -10,8 +10,7 @@ interface Props {
 
 function FileTreeItem(props: Props) {
   const [isExpanded, setIsExpanded] = useState<boolean>(false)
-  const [firstSegment, ...rest] = props.root.split('/')
-  const subPath = rest.join('/')
+  const [firstSegment] = props.root.split('/')
   const fileNameSegments = firstSegment.split('.')
   const hasExtension = fileNameSegments.length > 1
   const icon = hasExtension ? getIconForFile(firstSegment) : getIconForFolder(firstSegment)
