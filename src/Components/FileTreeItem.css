@@ -1,8 +1,32 @@
 .File-tree-item {
   align-items: center;
   display: flex;
+  overflow: hidden;
+  width: 100%;
 }
 
 .File-tree-item__filename {
   margin-left: 8px;
+  font-size: 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.File-tree-item__foldername {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.File-tree-item__foldername:hover {
+  text-decoration: underline;
+}
+
+.File-tree-item__arrow_transparent {
+  color: transparent;
+}
+
+.File-tree-item__child-tree {
+  padding-left: 8px;
 }

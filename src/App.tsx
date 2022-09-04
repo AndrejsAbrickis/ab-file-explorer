@@ -29,10 +29,10 @@ function App() {
             <p>Loading repository....</p>
           ) : (
             <div className='App-body'>
-              <div className='App-body-sidebar'>
-                <FileTree filePaths={repository.filepaths} />
+              <FileTree filePaths={repository.filepaths} />
+              <div className='App-body-content__wrapper'>
+                <div className='App-body-content'>Selected repository: {repository.name}</div>
               </div>
-              <div className='App-body-content'>{repository.name}</div>
             </div>
           )}
         </div>
