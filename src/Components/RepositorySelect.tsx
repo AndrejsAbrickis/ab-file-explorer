@@ -13,10 +13,14 @@ function RepositorySelect(props: Props) {
   }
 
   return (
-    <select title='Repository type' onChange={onRepositorySelect}>
+    <select
+      title='Repository type'
+      onChange={onRepositorySelect}
+      value={props.selected?.toLowerCase()}
+    >
       <option value=''>Select repository</option>
       {repositoryTypes.map((type) => (
-        <option key={type} value={type} selected={type.toLowerCase() === props.selected?.toLowerCase()}>
+        <option key={type} value={type}>
           {type}
         </option>
       ))}
