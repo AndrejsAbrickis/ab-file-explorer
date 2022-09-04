@@ -16,3 +16,12 @@
 .App-link {
   color: #61dafb;
 }
+
+.App-body {
+  display: grid;
+  grid-template-columns: 20vw auto;
+}
+
+.App-body-sidebar {
+  word-wrap: break-word;
+}
