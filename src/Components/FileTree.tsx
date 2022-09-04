@@ -7,7 +7,7 @@ interface Props {
 function FileTree(props: Props) {
   const fileTree = new Map<string, string[]>()
 
-  props.filePaths.forEach((path) => {
+  props.filePaths.forEach((path: string) => {
     const [root, ...rest] = path.split('/')
     const value = [...(fileTree.get(root) || []), rest.join('/')]
     fileTree.set(root, value)
@@ -26,3 +26,7 @@ function FileTree(props: Props) {
 }
 
 export default FileTree
+
+FileTree.defaultProps = {
+  filePaths: [],
+}
