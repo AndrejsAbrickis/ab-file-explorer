@@ -45,6 +45,13 @@ function FileTreeItem(props: Props) {
           src={`https://dderevjanik.github.io/vscode-icons-js-example/icons/${icon}`}
           alt=''
           width='24'
+          // eslint-disable-next-line react/no-unknown-property
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null
+            currentTarget.src = `https://dderevjanik.github.io/vscode-icons-js-example/icons/default_${
+              hasExtension ? 'file' : 'folder'
+            }.svg`
+          }}
         />
         {props.paths.length === 1 ? (
           <span className='File-tree-item__filename' title={firstSegment}>
