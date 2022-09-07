@@ -71,4 +71,3 @@ function FileTreeItem(props: Props) {
 }
 
 export default FileTreeItem
-4
