@@ -1,3 +1,4 @@
+import { FileTreeModel } from '../Models/FileTreeModel'
 import FileTreeItem from './FileTreeItem'
 
 interface Props {
@@ -5,20 +6,12 @@ interface Props {
 }
 
 function FileTree(props: Props) {
-  const fileTree = new Map<string, string[]>()
-
-  props.filePaths.forEach((path: string) => {
-    const [root, ...rest] = path.split('/')
-    const value = [...(fileTree.get(root) || []), rest.join('/')]
-    fileTree.set(root, value)
-  })
-
-  const fileTreeRoots = [...fileTree.keys()]
+  const fileTree = new FileTreeModel(props.filePaths)
 
   return (
     <div>
       {props.filePaths.length === 0 && <p>Empty repository</p>}
-      {fileTreeRoots.map((path) => (
+      {fileTree.getRoots().map((path) => (
         <FileTreeItem key={path} root={path} paths={[...(fileTree.get(path) || [])]} />
       ))}
     </div>
